@@ -10,8 +10,8 @@ This script generates file_name_language_acf.png, the double log plot of the aut
 ## Text format
 In our implementation, the split symbol between words in the text file is expect to be '\n'. 
 We put mobyDick.txt as an example retrieved from Gutenberg project. The text file is preprocessed to exclude irrelevant texts to the content.
-You can simply modify it by updating "splitter = '\n'" in line 40.
+You can simply modify it by updating "splitter = '\n'".
 
 ## Parameter
 The parameter of this quantification methodology is Q which defines the ratio of rare words (1/Q) in a text.
-It is set to 16 as default in line 34. 
+It is set to 16 in this implementation. 
