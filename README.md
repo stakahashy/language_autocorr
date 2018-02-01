@@ -9,7 +9,7 @@ This script generates file_name_language_acf.png, the double log plot of the aut
 # Notes
 ## Text format
 In our implementation, the split symbol between words in the text file is expect to be '\n'. 
-We put mobyDick.txt as an example retrieved from Gutenberg project.
+We put mobyDick.txt as an example retrieved from Gutenberg project. The text file is preprocessed to exclude irrelevant texts to the content.
 You can simply modify it by updating "splitter = '\n'" in line 40.
 
 ## Parameter
