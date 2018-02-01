@@ -1,10 +1,10 @@
 # language_autocorr
-A python implementation of "Long-Range Memory in Literary Texts: On the Universal Clustering of the Rare Words"(2016) authored by Kumiko Tanaka-Ishii and Armin Bunde. It works on our python2.7 and python3.5 environment.
+A python implementation of "Long-Range Memory in Literary Texts: On the Universal Clustering of the Rare Words"(2016) authored by Kumiko Tanaka-Ishii and Armin Bunde. It works on python2.7 and python3.6 environment (the results may slightly differ). 
 
 # Usage
 1. Install the dependencies by "pip install -r requirements.txt".
-2. Run "python auto_correlation.py file_name.txt".
-This script generates file_name_language_acf.png, the double log plot of the auto-correlation function.
+2. Run the script by "python auto_correlation.py file_name.txt".
+This script generates file_name_language_acf.png, the double log plot of the auto-correlation function of the text.
 
 # Notes
 ## Text format
