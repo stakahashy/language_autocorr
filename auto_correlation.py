@@ -1,6 +1,5 @@
 import operator
 import sys
-import pandas as pd
 import numpy as np
 import matplotlib as mpl
 mpl.use('Agg')
@@ -18,11 +17,18 @@ import matplotlib.pyplot as plt
 # authored by: Shuntaro Takahashi and Kumiko Tanaka-Ishii
 
 def auto_correlation(x,lag = 1):
-    a = pd.Series(np.reshape(x,(-1)))
-    b = a.autocorr(lag = lag)
-    if np.isnan(b) or np.isinf(b):
-        return 0
-    return b
+    def corr(xs,ys):
+        x_mu = np.mean(xs)
+        y_mu = np.mean(ys)
+        x_std = np.std(xs)
+        y_std = np.std(ys)
+        c = np.sum((xs-x_mu)*(ys-y_mu))/xs.size
+        c /= x_std*y_std
+        return c
+    c = corr(x[:x.size-lag],x[lag:])
+    if c < 0.:  
+        print('auto-correlation is negative at lag = %i'%i)
+    return c
 
 #check the args
 assert len(sys.argv) == 2, "No input file name or too many args" 
@@ -55,6 +61,7 @@ print('The constructed vocabulary size is %i'%(len(vocabulary)))
 
 #extract rare words from the vocabulary from the vocabulary
 sorted_vocabulary = sorted(vocabulary.items(), key=operator.itemgetter(1))
+
 max_count = int(ratio*len(words))
 count = 0
 rare_words = []
@@ -74,7 +81,6 @@ for i,word in enumerate(words):
         series.append(i)
 
 #construct a time series of intervals of rare words by taking the difference of the series
-
 series = np.diff(series)
 
 #the maximum lag for auto-correlation computation is restricted up to 1% of the length of the series
@@ -104,4 +110,4 @@ plt.yscale('log')
 plt.ylim(0.001,1)
 plt.xlabel('lag')
 plt.ylabel('auto-correlation')
-plt.savefig(file_name.split('.')[0]+'_language_acf.png')
+plt.savefig(file_name.split('.')[0]+'_language_acf.png',transparent=True)
